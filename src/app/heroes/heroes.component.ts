@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero.ts';
-import { HEROES } from '../mock-heroes.ts';
+import { Hero } from '../hero';
+import { HEROES } from '../mock-heroes';
 
 @Component({
   selector: 'app-heroes',
@@ -29,7 +29,13 @@ export class HeroesComponent implements OnInit {
   onClickSort(): void{
     //Run sort here
     if (this.byAlpha){
-        this.heroes.sort(function (a,b){return a.name[0] > b.name[0]});
+        this.heroes.sort(function (a,b){
+            let alpha = a.name[0];
+            let beta = b.name[0];
+            if (alpha > beta) { return 1; }
+            else if (alpha === beta) { return 0; }
+            else { return -1; }
+        });
         this.buttonText = "Order By id";
     } else {
         this.heroes.sort(function (a,b){return a.id - b.id});
