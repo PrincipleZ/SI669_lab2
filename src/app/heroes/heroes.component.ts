@@ -14,7 +14,8 @@ export class HeroesComponent implements OnInit {
   };
   heroes = HEROES;
   selectedHero: Hero;
-
+  byAlpha = true;
+  buttonText = "Order Alphabetically";
 
   constructor() { }
 
@@ -25,5 +26,16 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero
   }
 
+  onClickSort(): void{
+    //Run sort here
+    if (this.byAlpha){
+        this.heroes.sort(function (a,b){return a.name[0] > b.name[0]});
+        this.buttonText = "Order By id";
+    } else {
+        this.heroes.sort(function (a,b){return a.id - b.id});
+        this.buttonText = "Order Alphabetically";
+    }
+    this.byAlpha = !this.byAlpha;
+  }
 }
 

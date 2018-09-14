@@ -1,4 +1,8 @@
 <h2>My Heroes</h2>
+<ul class="order">
+  <li (click)="onClickSort()" style="text-align: center">{{buttonText}}
+  </li>
+</ul>
 <ul class="heroes">
   <li *ngFor="let hero of heroes" 
   [class.selected]="hero === selectedHero"
